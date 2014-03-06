@@ -49,7 +49,7 @@ App.IntroView = Em.View.extend({
     var controller = this.get('controller');
     controller.setProperties({
       'level': 1,
-      'clicks': 1,
+      'clicks': 0,
       'tapErrors': 0,
       'errCount': 0
     });
@@ -75,7 +75,7 @@ App.TestView = Em.View.extend({
   willDestroyElement: function() {
     var controller = this.get('controller');
     controller.setProperties({
-      'clicks': 1,
+      'clicks': 0,
       'tapErrors': 0
     });
 
@@ -135,9 +135,14 @@ App.TestView = Em.View.extend({
     }, 2500);
   },
   click: function(evt) {
-    var $tgt = $(evt.target);
+    var $tgt = $(evt.target),
+      controller = this.get('controller');
 
-    if (!$tgt.hasClass('btn')) return false;
+    // not a button or too many clicks
+    if (!$tgt.hasClass('btn') || (controller.get('clicks') + 1) > controller.get('level')) return false;
+
+    // register click
+    controller.set('clicks', controller.get('clicks') + 1);
 
     this.testEvent($tgt.text());
   },
@@ -156,10 +161,7 @@ App.TestView = Em.View.extend({
       that.$('#btn-' + clicks).addClass('error'); // add error marker
     }
 
-    if (level > clicks) {
-      // incr. clicks
-      controller.set('clicks', clicks + 1);
-    } else {
+    if (clicks >= level) {
       // highlight elements
       counter = 1;
       while (level >= counter) {
@@ -232,7 +234,7 @@ App.Corsi = DS.Model.extend({
 App.Corsi.FIXTURES = [{
   id: 1,
   level: 1,
-  clicks: 1,
+  clicks: 0,
   tapErrors: 0,
   errCount: 0
 }];
