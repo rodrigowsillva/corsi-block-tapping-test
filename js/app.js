@@ -188,7 +188,7 @@ App.TestView = Em.View.extend({
           controller.set('errCount', errCount);
         }
 
-        if (errCount > 1) {
+        if (errCount > 1 || controller.get('level') >= 10) {
           controller.transitionToRoute('result');
         } else {
           controller.transitionToRoute('pre');
