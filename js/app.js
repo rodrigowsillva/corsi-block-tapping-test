@@ -1,6 +1,11 @@
 
-// Fastclick
+// Fastclick - disable click delay
 new FastClick(document.body);
+
+// prevent bounce effect
+document.ontouchmove = function(event){
+  event.preventDefault();
+};
 
 // Ember App
 
@@ -71,13 +76,22 @@ App.PreView = Em.View.extend({
   }
 });
 
+App.ResultView = Em.View.extend({
+  didInsertElement: function() {
+    this.set('controller.level', this.get('controller.level') - 1);
+  }
+});
+
 App.TestView = Em.View.extend({
+  previousTouchId: 0, // to ignore multiple events on same box
   willDestroyElement: function() {
     var controller = this.get('controller');
     controller.setProperties({
       'clicks': 0,
       'tapErrors': 0
     });
+
+    this.set('previousTouchId', 0);
 
     this.$('.test-btns').toggleClass('animation play');
     this.$('.btn').removeClass('btn-flash-show btn-flash btn-danger');
@@ -134,17 +148,27 @@ App.TestView = Em.View.extend({
       iteration += 1;
     }, 2500);
   },
+  touchStart: function(evt) {
+    this.eventChannel(evt);
+  },
   click: function(evt) {
+    this.eventChannel(evt);
+  },
+  eventChannel: function(evt) {
     var $tgt = $(evt.target),
-      controller = this.get('controller');
+      controller = this.get('controller'),
+      blockId = $tgt.text();
 
     // not a button or too many clicks
-    if (!$tgt.hasClass('btn') || (controller.get('clicks') + 1) > controller.get('level')) return false;
-
+    if (evt.target.nodeName != 'BUTTON' || (controller.get('clicks') + 1) > controller.get('level')) return false;
+    // if same as previous
+    if(blockId == this.get('previousTouchId')) return false;
+    // set history
+    this.set('previousTouchId', blockId);
     // register click
     controller.set('clicks', controller.get('clicks') + 1);
 
-    this.testEvent($tgt.text());
+    this.testEvent(blockId);
   },
   testEvent: function(value) {
     var that = this,

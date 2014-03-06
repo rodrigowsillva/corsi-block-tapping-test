@@ -1,5 +1,13 @@
 /* Put your CSS here */
 
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -139,8 +147,13 @@ body {
 
       .btn-danger {
         color: #FFF;
-        background-color: #D9534F;
-        border-color: #D43F3A;
+        background-color: #CA7220;
+        border-color: #CA7220;
+        -webkit-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
+        -moz-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
+        -ms-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
+        background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
+
       }
     }
   }
