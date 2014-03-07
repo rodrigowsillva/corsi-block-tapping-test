@@ -48,6 +48,14 @@ App.ResultRoute = Em.Route.extend({
   }
 });
 
+// App.IntroController = Em.ObjectController.extend({
+//   actions: {
+//     gotoPre: function() {
+//       this.transitionToRoute('pre');
+//     }
+//   }
+// });
+
 App.IntroView = Em.View.extend({
   didInsertElement: function() {
     // reset test properties
@@ -58,6 +66,12 @@ App.IntroView = Em.View.extend({
       'tapErrors': 0,
       'errCount': 0
     });
+  },
+  touchEnd: function(evt) {
+    if(evt.target.nodeName === 'BUTTON') this.get('controller').transitionToRoute('pre');
+  },
+  click: function(evt) {
+    if(evt.target.nodeName === 'BUTTON') this.get('controller').transitionToRoute('pre');
   }
 });
 
@@ -73,12 +87,24 @@ App.PreView = Em.View.extend({
   },
   willDestroyElement: function() {
     this.$('.small-btns').find('.btn').removeClass('btn-flash');
+  },
+  touchEnd: function(evt) {
+    if(evt.target.nodeName === 'BUTTON') this.get('controller').transitionToRoute('test');
+  },
+  click: function(evt) {
+    if(evt.target.nodeName === 'BUTTON') this.get('controller').transitionToRoute('test');
   }
 });
 
 App.ResultView = Em.View.extend({
   didInsertElement: function() {
     this.set('controller.level', this.get('controller.level') - 1);
+  },
+  touchEnd: function(evt) {
+    if(evt.target.nodeName === 'BUTTON') this.get('controller').transitionToRoute('intro');
+  },
+  click: function(evt) {
+    if(evt.target.nodeName === 'BUTTON') this.get('controller').transitionToRoute('intro');
   }
 });
 
@@ -148,7 +174,7 @@ App.TestView = Em.View.extend({
       iteration += 1;
     }, 2500);
   },
-  touchStart: function(evt) {
+  touchEnd: function(evt) {
     this.eventChannel(evt);
   },
   click: function(evt) {
