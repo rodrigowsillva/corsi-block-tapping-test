@@ -48,14 +48,6 @@ App.ResultRoute = Em.Route.extend({
   }
 });
 
-// App.IntroController = Em.ObjectController.extend({
-//   actions: {
-//     gotoPre: function() {
-//       this.transitionToRoute('pre');
-//     }
-//   }
-// });
-
 App.IntroView = Em.View.extend({
   didInsertElement: function() {
     // reset test properties
