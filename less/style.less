@@ -52,9 +52,11 @@ body {
       cursor: default;
     }
     .btn-flash {
-      color: #FFF;
-      background-color: #CA7220;
-      border-color: #CA7220;
+      color: #333;
+      background-color: #FFF;
+      border-color: #333;
+      border-width: 4px;
+      font-weight: bold;
     }
 
   }
@@ -110,9 +112,12 @@ body {
       transition: all 0s ease-in;
     }
 
-    .btn-flash, .btn-flash-show, .btn-primary:active { //, .btn-primary:active, .btn-primary.active {
-        background-color: #CA7220;
-        border-color: #CA7220;
+    .btn-flash, .btn-flash-show, .btn-primary:active {
+      color: #333;
+      background-color: #FFF !important;
+      border-color: #333;
+      border-width: 8px;
+      font-weight: bold;
     }
 
     .screen {
@@ -128,6 +133,15 @@ body {
       display: block;
     }
 
+    .btn-primary {
+      background: #333;
+      &:active {
+        background: #FFF;
+        border-color: #333;
+        color: #FFF;
+      }
+    }
+
     &.animation {
       .btn {
         background: #333;
@@ -135,8 +149,11 @@ body {
       }
 
       .btn-flash {
-        background-color: #CA7220;
-        border-color: #CA7220;
+        color: #FFF;
+        background-color: #FFF;
+        border-color: #333;
+        border-width: 8px;
+        font-weight: bold;
       }
     }
 
@@ -146,13 +163,13 @@ body {
       }
 
       .btn-danger {
-        color: #FFF;
-        background-color: #CA7220;
-        border-color: #CA7220;
-        -webkit-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
-        -moz-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
-        -ms-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
-        background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0, 0, 0, 0.5) 35px, rgba(0, 0, 0, 0.5) 70px);
+        color: #333;
+        background-color: #FFF;
+        border-color: #333;
+        -webkit-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0,0,0,.5) 35px, rgba(0,0,0,.5) 70px);
+        -moz-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0,0,0,.5) 35px, rgba(0,0,0,.5) 70px);
+        -ms-background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0,0,0,.5) 35px, rgba(0,0,0,.5) 70px);
+        background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 35px, rgba(0,0,0,.5) 35px, rgba(0,0,0,.5) 70px);
 
       }
     }

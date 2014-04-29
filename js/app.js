@@ -147,6 +147,8 @@ App.TestView = Em.View.extend({
       iteration = 1,
       that = this;
 
+    $('.message').html('<strong>Odota</strong> ja <strong>seuraa</strong> mitkä neliöt välähtävät.');
+
     var flashInterval = setInterval(function() {
       var $btn = that.$('#btn-' + iteration);
 
@@ -160,6 +162,7 @@ App.TestView = Em.View.extend({
         setTimeout(function() {
           that.$('.test-btns').toggleClass('animation play');
           that.$('.screen').addClass('hidden');
+          $('.message').html('<strong>Kosketa</strong> välähtäneitä neliöitä samassa järjestyksessä.');
         }, 2000);
       }
 
@@ -246,20 +249,6 @@ App.TestView = Em.View.extend({
 
 Em.Handlebars.registerBoundHelper('multiply', function(count, word) {
   return (count > 1) ? word + 'ta' : word;
-});
-
-Em.Handlebars.registerBoundHelper('conclusion', function(level) {
-  var clause;
-
-  if (level < 5) {
-    clause = 'joten tuloksesi oli tavallista suoritusta heikompi.';
-  } else if (level == 5) {
-    clause = 'joten tuloksesi oli aivan väestön keskiarvon mukainen.';
-  } else {
-    clause = 'joten tuloksesi oli tavallista suoritusta parempi.';
-  }
-
-  return clause;
 });
 
 // Model
